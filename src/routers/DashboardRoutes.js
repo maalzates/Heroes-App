@@ -1,10 +1,8 @@
-import React from 'react'
 import {    
-    Switch,
+    Routes,
     Route,
-    Redirect
 } from "react-router-dom";
-import HeroeScreen from '../components/heroes/HeroeScreen'
+import HeroeScreen from '../components/heroes/HeroeScreen.js-disabled'
 import NavBar from '../components/ui/NavBar'
 import MarvelScreen from '../components/marvel/MarvelScreen.js'
 import DcScreen from '../components/dc/DcScreen'
@@ -15,16 +13,14 @@ const DashboardRoutes = () => {
     return (
 
         <>
-            <NavBar />
-            <div className="container mt-2">
-                <Switch>
-                    <Route path="/marvel" component={MarvelScreen}/>
-                    <Route path="/hero/:heroeId" component={HeroeScreen}/>
-                    <Route path="/dc" component={DcScreen}/>
-                    <Route path="/search" component={SearchScreen}/>
-                    <Redirect to="/marvel" />
-                </Switch>
-            </div>
+            <NavBar />            
+                <Routes >
+                    <Route path="/marvel" element={<MarvelScreen/>}/>
+                    <Route path="/hero/:heroeId" element={<HeroeScreen/>}/>
+                    <Route path="/dc" element={<DcScreen/>}/>
+                    <Route path="/search" element={<SearchScreen/>}/>
+                    <Route path="/" element={<MarvelScreen/>}/>
+                </Routes>
         </>
     )
 }

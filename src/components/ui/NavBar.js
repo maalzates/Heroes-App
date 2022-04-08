@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link, NavLink, useHistory } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../auth/AuthContext'
 import { types } from '../../types/types';
 
@@ -7,13 +7,13 @@ const NavBar = () => {
 
     const {user: {name}, dispatch} = useContext(AuthContext);
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         dispatch({
             type: types.logout,
         });
-        history.replace('/login');
+        navigate('/login');
     }
 
     return (
@@ -31,14 +31,14 @@ const NavBar = () => {
 
                     <NavLink 
                         // activeClassName="active"
-                        className={ ({isActive}) => 'nav-item nav-link' + (isActive ? 'active' : '') }
+                        className={({isActive}) => `nav-item nav-link ${isActive ? 'active': ''}`} 
                         to="/marvel"
                     >
                         Marvel
                     </NavLink>
 
                     <NavLink 
-                        className={(isActive) => 'nav-item nav-link' + (isActive ? 'active' : '') } 
+                        className={({isActive}) => `nav-item nav-link ${isActive ? 'active': ''}`} 
                         to="/dc"
                     >
                         DC
@@ -49,7 +49,7 @@ const NavBar = () => {
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
                     <NavLink 
-                        className={({isActive}) => 'nav-item nav-link' + (isActive ? 'active': '')} 
+                        className={({isActive}) => `nav-item nav-link ${isActive ? 'active': ''}`} 
                         to="/search"
                     >
                         Search
